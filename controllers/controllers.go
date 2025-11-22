@@ -86,3 +86,25 @@ func UpdateUserDetails(ctx *gin.Context) {
 	})
 
 }
+
+func Login(ctx *gin.Context) {
+	userName := ctx.PostForm("username")
+	password := ctx.PostForm("password")
+
+	if userName == "admin" && password == "1234" {
+		ctx.JSON(http.StatusOK, gin.H{
+			"massage": "You are welcome in Admin Portal",
+		})
+		return
+	}
+	ctx.JSON(http.StatusBadRequest, gin.H{
+		"massage": "Invalid credentials",
+	})
+
+}
+
+func SecureProfile(ctx *gin.Context) {
+	ctx.JSON(http.StatusOK, gin.H{
+		"massage": "Welcome ! You are authorized",
+	})
+}
